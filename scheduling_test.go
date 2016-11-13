@@ -8,7 +8,7 @@ import (
 func TestNewScheduler(t *testing.T) {
 	scheduler := NewDefaultScheduler()
 	schedulerType := reflect.TypeOf(scheduler)
-	expectedType := reflect.TypeOf(DefaultScheduler{})
+	expectedType := reflect.TypeOf(&DefaultScheduler{})
 
 	if schedulerType != expectedType {
 		t.Errorf("expected scheduler of type %v, got %v", expectedType, schedulerType)
@@ -56,7 +56,6 @@ func TestScheduleNode(t *testing.T) {
 
 func TestExecute(t *testing.T) {
 	nodeExecutor := &FakeNodeExecutor{}
-	//scheduler := &DefaultScheduler{scheduled: []*Node{}, nodeExecutor: &nodeExecutor}
 	scheduler := NewDefaultScheduler()
 	scheduler.nodeExecutor = nodeExecutor
 	node := NewNode()

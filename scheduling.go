@@ -2,8 +2,8 @@ package gobehaviortree
 
 import "fmt"
 
-func NewDefaultScheduler() DefaultScheduler {
-	return DefaultScheduler{nodeExecutor: DefaultNodeExecutor{}}
+func NewDefaultScheduler() *DefaultScheduler {
+	return &DefaultScheduler{nodeExecutor: DefaultNodeExecutor{}}
 }
 
 // Scheduler handled the scheduling of nodes in the tree for execution.
