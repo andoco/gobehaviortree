@@ -3,14 +3,14 @@ package gobehaviortree
 import "testing"
 
 func TestNodeInitOnFirstRun(t *testing.T) {
-	node := NewNode()
+	node := NewNode("test")
 	nodeExecutor := DefaultNodeExecutor{}
-	taskExecutor := JournalTaskExecutor{Result: Success}
+	taskExecutor := MakeJournalTaskExecutor(Success)
 
 	nodeExecutor.Execute(node, &taskExecutor)
 
-	if taskExecutor.InitCount != 1 {
-		t.Fatalf("expected init count of %d, got %d", 1, taskExecutor.InitCount)
+	if taskExecutor.Counts.InitCount != 1 {
+		t.Fatalf("expected init count of %d, got %d", 1, taskExecutor.Counts.InitCount)
 	}
 }
 
@@ -30,9 +30,9 @@ func TestChangingNodeStatus(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			node := NewNode()
+			node := NewNode("test")
 			node.State.Status = tc.existingStatus
-			journalExecutor := &JournalTaskExecutor{Result: tc.result}
+			journalExecutor := MakeJournalTaskExecutor(tc.result)
 
 			nodeExecutor.Execute(node, journalExecutor)
 

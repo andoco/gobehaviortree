@@ -15,6 +15,6 @@ type NodeState struct {
 	Result TaskResult
 }
 
-func NewNode() *Node {
-	return &Node{State: &NodeState{}}
+func NewNode(name string) *Node {
+	return &Node{Name: name, State: &NodeState{}}
 }

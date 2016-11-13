@@ -28,7 +28,7 @@ func TestScheduleNode(t *testing.T) {
 		msg         string
 	}{
 		{
-			NewNode(),
+			NewNode("test"),
 			false,
 			"valid node",
 		},
@@ -58,8 +58,7 @@ func TestExecute(t *testing.T) {
 	nodeExecutor := &FakeNodeExecutor{}
 	scheduler := NewDefaultScheduler()
 	scheduler.nodeExecutor = nodeExecutor
-	node := NewNode()
-	node.Name = "test"
+	node := NewNode("test")
 
 	scheduler.Schedule(node)
 
