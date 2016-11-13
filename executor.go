@@ -5,7 +5,7 @@ type TaskExecutor interface {
 	Execute(node *Node) (TaskResult, error)
 }
 
-func MakeJournalTaskExecutor(result TaskResult) JournalTaskExecutor {
+func NewJournalTaskExecutor(result TaskResult) JournalTaskExecutor {
 	return JournalTaskExecutor{Result: result, Counts: &TaskExecutionCount{}}
 }
 

@@ -5,7 +5,7 @@ import "testing"
 func TestNodeInitOnFirstRun(t *testing.T) {
 	node := NewNode("test")
 	nodeExecutor := DefaultNodeExecutor{}
-	taskExecutor := MakeJournalTaskExecutor(Success)
+	taskExecutor := NewJournalTaskExecutor(Success)
 
 	nodeExecutor.Execute(node, &taskExecutor)
 
@@ -32,7 +32,7 @@ func TestChangingNodeStatus(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			node := NewNode("test")
 			node.State.Status = tc.existingStatus
-			journalExecutor := MakeJournalTaskExecutor(tc.result)
+			journalExecutor := NewJournalTaskExecutor(tc.result)
 
 			nodeExecutor.Execute(node, journalExecutor)
 
