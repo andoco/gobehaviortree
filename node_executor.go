@@ -14,7 +14,7 @@ func (e DefaultNodeExecutor) Execute(node *Node, task TaskExecutor) error {
 
 	node.State.Status = Running
 
-	result, _ := task.Execute(node)
+	result, _ := task.Execute(node, func(node *Node) {})
 
 	switch result {
 	case Success, Failure:

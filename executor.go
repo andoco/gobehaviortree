@@ -1,8 +1,10 @@
 package gobehaviortree
 
+type ScheduleFunc func(node *Node)
+
 type TaskExecutor interface {
 	Init(node *Node) error
-	Execute(node *Node) (TaskResult, error)
+	Execute(node *Node, schedule ScheduleFunc) (TaskResult, error)
 }
 
 func NewJournalTaskExecutor(result TaskResult) JournalTaskExecutor {
@@ -24,7 +26,7 @@ func (e JournalTaskExecutor) Init(node *Node) error {
 	return nil
 }
 
-func (e JournalTaskExecutor) Execute(node *Node) (TaskResult, error) {
+func (e JournalTaskExecutor) Execute(node *Node, schedule ScheduleFunc) (TaskResult, error) {
 	e.Counts.ExecuteCount++
 	return e.Result, nil
 }

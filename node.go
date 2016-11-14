@@ -11,8 +11,9 @@ type Node struct {
 
 // NodeState holds the mutable state associated with a task in the behaviour tree.
 type NodeState struct {
-	Status TaskStatus
-	Result TaskResult
+	Status        TaskStatus
+	Result        TaskResult
+	ExecutorState interface{}
 }
 
 func NewNode(name string) *Node {
