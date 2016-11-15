@@ -10,22 +10,22 @@ func NewBuilder() *DefaultBuilder {
 
 type DefaultBuilder struct {
 	name     string
-	children []DefaultBuilder
+	children []*DefaultBuilder
 	args     map[string]interface{}
 }
 
-func (b DefaultBuilder) Node(name string, children ...DefaultBuilder) *DefaultBuilder {
+func (b DefaultBuilder) Node(name string, children ...*DefaultBuilder) *DefaultBuilder {
 	return &DefaultBuilder{name: name, children: children}
 }
 
 func (b DefaultBuilder) Build() Tree {
 	root := NewNode("root")
-	buildWalker(b, root)
+	buildWalker(&b, root)
 
 	return Tree{Root: root}
 }
 
-func buildWalker(b DefaultBuilder, parent *Node) {
+func buildWalker(b *DefaultBuilder, parent *Node) {
 	n := NewNode(b.name)
 	parent.Children = append(parent.Children, n)
 
