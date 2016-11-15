@@ -14,7 +14,7 @@ type DefaultBuilder struct {
 	args     map[string]interface{}
 }
 
-func (b DefaultBuilder) Node(name string, children []DefaultBuilder) *DefaultBuilder {
+func (b DefaultBuilder) Node(name string, children ...DefaultBuilder) *DefaultBuilder {
 	return &DefaultBuilder{name: name, children: children}
 }
 
